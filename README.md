@@ -1,2 +1,2 @@
 # StrutsHelloWorld
-Struts的一些入门程序
+Struts鍏ラ棬绋嬪簭

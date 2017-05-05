@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="default" namespace="/" extends="struts-default">
+	<action name="HelloWorld" class="struts.action.HelloWorld">
+		<result name="success">/WEB-INF/jsp/hello.jsp</result>
+	</action>
+	<action name="Login" class="struts.action.Login">
+		<result name="success">/return.jsp</result>
+	</action>
+	
+	<action name="MyJsp">
+		<result>/MyJsp.jsp</result>
+	</action>
+	
+	<action name="collection" class="struts.action.CollectionAction">
+		<result name="success">/index.jsp</result>
+	</action>
+	
+	<action name="*_*" class="struts.action.{1}Action" method="{2}">
+		<result>/{1}_{2}.jsp</result>
+	</action>
+	
+	</package>
+</struts>    

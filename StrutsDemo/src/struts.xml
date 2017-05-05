@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<!-- 
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="true" />
+
+    <package name="default" namespace="/" extends="struts-default">
+
+        <default-action-ref name="index" />
+
+        <global-results>
+            <result name="error">/WEB-INF/jsp/error.jsp</result>
+        </global-results>
+
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="error"/>
+        </global-exception-mappings>
+
+        <action name="index">
+            <result type="redirectAction">
+                <param name="actionName">HelloWorld</param>
+                <param name="namespace">/example</param>
+            </result>
+        </action>
+    </package>
+
+    <include file="example.xml"/>
+	
+	 -->
+
+	<constant name="struts.devMode" value="true" /><!-- 开发者模式 -->
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	
+	<package name="public_" namespace="/public" extends="struts-default">
+		<global-results><result name="error">/error.jsp</result></global-results>
+	</package>
+	
+	
+    <package name="default" namespace="/" extends="public_">
+    	
+    	
+        <action name="hello" class="actionTest1.Helloworld">
+        	<!-- result>/Hello.jsp</result> 测试一下全局error页面-->
+        </action>
+        
+        <!-- 这个action测试的是result返回类型：转发，重定向，转发到action，重定向到action -->
+        <action name="testResult" class="resultTest.ResultTestAction1">
+        	<!--<result type="dispatcher" name="success">/result.jsp</result>
+        	 <result type="redirect" name="success">/result.jsp</result>-->
+        	<!--<result type="chain" name="success">hello</result>-->
+        	<result type="redirectAction" name="success">hello</result>
+        </action>
+        
+        <action name="testTag" class="tagsActionTest.TagSAction">
+        	<result>/testTags.jsp</result>
+        </action>
+    </package>
+    
+    
+    
+    
+	<package name="actions" namespace="/actions" extends="struts-default">
+		
+		<default-action-ref name="index"></default-action-ref>
+		
+		<action name="index">
+			<result>/index.jsp</result>
+		</action>
+		
+		
+		 <action name="registerUser" class="actionTest2.UserAction">
+			<result name="success">/message.jsp</result>
+		</action>	 	
+		
+		<action name="loginAction*" class="servletAPIAction.ServletAPIAction_{1}" method="login" >
+			<result name="success">/message.jsp</result>
+		</action> 
+		
+	</package>
+
+</struts>
